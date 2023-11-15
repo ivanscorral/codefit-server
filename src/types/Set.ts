@@ -1,5 +1,6 @@
-export default interface TrainingSet {
+export default interface Set {
   setId?: number
+  exerciseId?: number
   setOrder: number
   reps: number
   weight: number
