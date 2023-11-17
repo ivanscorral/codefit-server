@@ -1,16 +1,11 @@
 import type Set from '../types/Set'
-import { type Pool } from 'pg'
+import pool from './Database'
 
 export class SetRepository {
   private readonly tableName = 'set_tbl'
-  private readonly pool: Pool
-
-  constructor (pool: Pool) {
-    this.pool = pool
-  }
 
   async insert (set: Set): Promise<void> {
-    const client = await this.pool.connect()
+    const client = await pool.connect()
     try {
       await client.query('BEGIN')
       // Get the highest set_order for the current exercise
@@ -35,7 +30,7 @@ export class SetRepository {
   }
 
   async findById (id: number): Promise<Set | undefined> {
-    const client = await this.pool.connect()
+    const client = await pool.connect()
     try {
       const query = {
         text: `SELECT * FROM ${this.tableName} WHERE set_id = $1`,
@@ -49,7 +44,7 @@ export class SetRepository {
   }
 
   async findAll (): Promise<Set[]> {
-    const client = await this.pool.connect()
+    const client = await pool.connect()
     try {
       const query = {
         text: `SELECT * FROM ${this.tableName}`

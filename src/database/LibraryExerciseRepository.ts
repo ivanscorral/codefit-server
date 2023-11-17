@@ -1,12 +1,10 @@
-import { type Pool } from 'pg'
+import pool from './Database'
 import type LibraryExercise from '../types/LibraryExercise'
 import { type MuscleGroup } from '../types/MuscleGroup'
 
 export class LibraryExerciseRepository {
-  constructor (private readonly pool: Pool) {}
-
   async insert (libraryExercise: LibraryExercise): Promise<void> {
-    const client = await this.pool.connect()
+    const client = await pool.connect()
     try {
       await client.query('BEGIN')
       const query = {
@@ -24,21 +22,51 @@ export class LibraryExerciseRepository {
   }
 
   async findAll (): Promise<LibraryExercise[]> {
-    const client = await this.pool.connect()
-    const query = {
-      text: 'SELECT * FROM library_exercise_tbl'
+    const client = await pool.connect()
+    try {
+      const query = {
+        text: 'SELECT * FROM library_exercise_tbl'
+      }
+      const result = await client.query(query)
+      return checkEmptyResults(result.rows)
+    } finally {
+      client.release()
     }
-    const result = await client.query(query)
-    return result.rows
   }
-  
+
   async findByMuscleGroup (muscleGroup: MuscleGroup): Promise<LibraryExercise[]> {
-    const client = await this.pool.connect()
-    const query = {
-      text: 'SELECT * FROM library_exercise_tbl WHERE muscle_group = $1',
-      values: [muscleGroup]
+    const client = await pool.connect()
+    try {
+      const query = {
+        text: 'SELECT * FROM library_exercise_tbl WHERE muscle_group = $1',
+        values: [muscleGroup]
+      }
+      const result = await client.query(query)
+      return checkEmptyResults(result.rows)
+    } finally {
+      client.release()
     }
-    const result = await client.query(query)
-    return result.rows
   }
+
+  async findNameContains (str: string): Promise<LibraryExercise[]> {
+    const client = await pool.connect()
+    try {
+      const query = {
+        text: 'SELECT * FROM library_exercise_tbl WHERE name LIKE $1',
+        values: [`%${str}%`]
+      }
+      const result = await client.query(query)  
+      return checkEmptyResults(result.rows)
+    } finally {
+      client.release()
+    }
+  }
+}
+
+function checkEmptyResults (arr: LibraryExercise[]): LibraryExercise[] {
+  if (arr.length === 0) {
+    console.warn('[LibraryExerciseRepository]: No library exercises found, returning empty array')
+    return []
+  }
+  return arr
 }
