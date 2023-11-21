@@ -1,0 +1,52 @@
+[
+    {
+        "name": "Push-ups",
+        "description": "A bodyweight exercise where one starts from a prone position and repeatedly raises and lowers the body using the arms.",
+        "muscleGroup": "Chest, shoulders, triceps"
+    },
+    {
+        "name": "Squats",
+        "description": "A strength exercise in which the trainee lowers their hips from a standing position and then stands back up.",
+        "muscleGroup": "Legs, lower back"
+    },
+    {
+        "name": "Lunges",
+        "description": "A strength exercise used for strengthening, sculpting and building several muscles/muscle groups including the quadriceps (thighs), the gluteus maximus (buttocks) as well as the hamstrings.",
+        "muscleGroup": "Legs, glutes"
+    },
+    {
+        "name": "Plank",
+        "description": "An isometric core strength exercise that involves maintaining a position similar to a push-up for the maximum possible time.",
+        "muscleGroup": "Core"
+    },
+    {
+        "name": "Bicep Curls",
+        "description": "A weight-training exercise that primarily targets the biceps brachii muscle.",
+        "muscleGroup": "Biceps"
+    },
+    {
+        "name": "Tricep Dips",
+        "description": "An upper-body strength exercise that targets the triceps and other muscles of the upper arm and shoulder.",
+        "muscleGroup": "Triceps, shoulders"
+    },
+    {
+        "name": "Sit-ups",
+        "description": "An abdominal endurance training exercise to strengthen, tighten, and tone the abdominal muscles.",
+        "muscleGroup": "Core"
+    },
+    {
+        "name": "Deadlifts",
+        "description": "A weight training exercise in which a loaded barbell or bar is lifted off the ground to the level of the hips, then lowered to the ground.",
+        "muscleGroup": "Lower back, legs"
+    },
+    {
+        "name": "Bench Press",
+        "description": "A strength training exercise in which the trainee presses a weight upwards from a supine position.",
+        "muscleGroup": "Chest, shoulders, triceps"
+    },
+    {
+        "name": "Pull-ups",
+        "description": "An upper body strength exercise where the exercise is performed by lifting the body up while hanging from a bar, with the arms extended.",
+        "muscleGroup": "Back, biceps"
+    }
+]
