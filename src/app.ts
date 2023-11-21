@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 import express from 'express'
 import routes from './routes'
 
-dotenv.config() 
+dotenv.config()
 
 const app = express()
 const port = 3000
